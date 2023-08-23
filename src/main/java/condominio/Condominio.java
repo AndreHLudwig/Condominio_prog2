@@ -65,4 +65,5 @@ public class Condominio {
     public void setValorVagaGaragem(double valorVagaGaragem) {
         this.valorVagaGaragem = valorVagaGaragem;
     }
+
 }

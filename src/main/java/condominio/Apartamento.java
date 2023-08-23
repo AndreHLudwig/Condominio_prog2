@@ -54,4 +54,5 @@ public class Apartamento {
     public void setValorCondominio(double valorCondominio) {
         this.valorCondominio = valorCondominio;
     }
+
 }
