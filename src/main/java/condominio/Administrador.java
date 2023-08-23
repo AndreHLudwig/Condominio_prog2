@@ -4,15 +4,11 @@
  */
 package condominio;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author 06985933599
  */
-public class Condominio {
-    private ArrayList <Bloco> blocos = new ArrayList();
-    private String nome;
-    private String endereco;
-    
+public class Administrador {
+    private Condominio condominio;
+    private String cnpj;
 }
