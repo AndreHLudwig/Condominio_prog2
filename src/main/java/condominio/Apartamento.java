@@ -9,5 +9,9 @@ package condominio;
  * @author 06985933599
  */
 public class Apartamento {
-    
+    private String numero;
+    private Locatario locatario;
+    private double metragem;
+    private int vagasDeGaragem;
+    private double valorCondominio;
 }
