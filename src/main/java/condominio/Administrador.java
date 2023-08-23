@@ -11,4 +11,11 @@ package condominio;
 public class Administrador {
     private Condominio condominio;
     private String cnpj;
+
+    public double nomeDoMetodo(Apartamento apartamento){
+        CalculadoraAluguel calculadoraAluguel = new CalculadoraAluguel();
+        double novoAluguel = calculadoraAluguel.calcularNovoAluguel(this.condominio, apartamento);
+        return novoAluguel;
+    }
+
 }
