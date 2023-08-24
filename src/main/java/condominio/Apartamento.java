@@ -22,6 +22,9 @@ public class Apartamento {
         this.valorAluguel = 0;
     }
 
+    public Apartamento() {
+    }
+
     public String getNumero() {
         return numero;
     }
