@@ -8,7 +8,29 @@ package condominio;
  *
  * @author 06985933599
  */
-public class Locatario {
+public class Locatario extends Pessoa{
     private Apartamento apartamento;
     private String cpf;
+
+    public Locatario(String nome, String telefone, String email, Apartamento apartamento, String cpf) {
+        super(nome, telefone, email);
+        this.apartamento = apartamento;
+        this.cpf = cpf;
+    }
+
+    public Apartamento getApartamento() {
+        return apartamento;
+    }
+
+    public void setApartamento(Apartamento apartamento) {
+        this.apartamento = apartamento;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 }

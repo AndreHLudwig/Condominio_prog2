@@ -13,7 +13,14 @@ public class Apartamento {
     private Locatario locatario;
     private double metragem;
     private int vagasDeGaragem;
-    private double valorCondominio;
+    private double valorAluguel;
+
+    public Apartamento(String numero, double metragem, int vagasDeGaragem) {
+        this.numero = numero;
+        this.metragem = metragem;
+        this.vagasDeGaragem = vagasDeGaragem;
+        this.valorAluguel = 0;
+    }
 
     public String getNumero() {
         return numero;
@@ -47,12 +54,12 @@ public class Apartamento {
         this.vagasDeGaragem = vagasDeGaragem;
     }
 
-    public double getValorCondominio() {
-        return valorCondominio;
+    public double getValorAluguel() {
+        return valorAluguel;
     }
 
-    public void setValorCondominio(double valorCondominio) {
-        this.valorCondominio = valorCondominio;
+    public void setValorAluguel(double valorAluguel) {
+        this.valorAluguel = valorAluguel;
     }
 
 }
