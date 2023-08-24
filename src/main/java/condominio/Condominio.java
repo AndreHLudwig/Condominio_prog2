@@ -75,4 +75,9 @@ public class Condominio {
         this.valorVagaGaragem = valorVagaGaragem;
     }
 
+    @Override
+    public String toString() {
+        return "Condominio{" + "blocos=" + blocos + ", nome=" + nome + ", endereco=" + endereco  + '}';
+    }
+
 }

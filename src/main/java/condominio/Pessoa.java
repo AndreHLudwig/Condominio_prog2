@@ -9,7 +9,7 @@ package condominio;
  *
  * @author 06985933599
  */
-public class Pessoa {
+public abstract class Pessoa {
     private String nome;
     private String telefone;
     private String email;
@@ -43,4 +43,10 @@ public class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" + "nome=" + nome + ", telefone=" + telefone + ", email=" + email + '}';
+    }
+    
 }
