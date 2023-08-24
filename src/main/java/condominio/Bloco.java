@@ -54,4 +54,11 @@ public class Bloco {
      public void setVagasDeGaragem(int vagasDeGaragem) {
           this.vagasDeGaragem = vagasDeGaragem;
      }
+
+    @Override
+    public String toString() {
+        return "Bloco{"  + ", nome=" + nome + ", andares=" + andares + 
+                ", vagasDeGaragem=" + vagasDeGaragem + "apartamentos=" + apartamentos +'}';
+    }
+     
 }

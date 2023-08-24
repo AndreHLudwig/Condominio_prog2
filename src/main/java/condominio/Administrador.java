@@ -51,4 +51,12 @@ public class Administrador extends Pessoa{
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+
+    @Override
+    public String toString() {
+        String pessoa = super.toString();
+        return pessoa + "Administrador{" + "condominio=" + condominio + ", cnpj=" + cnpj + '}';
+    }
+    
+    
 }
