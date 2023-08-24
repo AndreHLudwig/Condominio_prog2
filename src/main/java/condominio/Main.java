@@ -1,12 +1,32 @@
 package condominio;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
         Condominio condominio = iniciaCondominio();
         Administrador administrador = new Administrador("Geraldo Varela", "47988165885", "geraldo.varela@udesc.br", condominio, "83.891.283/0001-36");
         administrador.calcularNovoAluguelGeral();
+        adicionarLocatario(condominio);
+    }
+    
+    public static void adicionarLocatario(Condominio condominio){
+        
+        String numeroApartamento = JOptionPane.showInputDialog("Informe o número do Apartamento para cadastrar novo Morador");
+        //Pegando dados do Locatário;
+        
+        String nome = JOptionPane.showInputDialog("Digite o nome do Locatário");
+        String telefone = JOptionPane.showInputDialog("Digite o telefone do Locatário");
+        String email = JOptionPane.showInputDialog("Informe o email do Locatário");
+        String cpf = JOptionPane.showInputDialog("Informe o CPF do Locatário");
+        Locatario oLocatario = new Locatario(nome, telefone, email, cpf);
+        
+        //apartamento.setLocatario(oLocatario);
+        
+        //oLocatario.setApartamento(apartamento);
+         
+        String sucesso = JOptionPane.showInputDialog("Locatário cadastrado com sucesso!");
     }
 
     public static Condominio iniciaCondominio(){
