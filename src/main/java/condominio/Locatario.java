@@ -12,9 +12,8 @@ public class Locatario extends Pessoa{
     private Apartamento apartamento;
     private String cpf;
 
-    public Locatario(String nome, String telefone, String email, Apartamento apartamento, String cpf) {
+    public Locatario(String nome, String telefone, String email, String cpf) {
         super(nome, telefone, email);
-        this.apartamento = apartamento;
         this.cpf = cpf;
     }
 
@@ -33,4 +32,11 @@ public class Locatario extends Pessoa{
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    @Override
+    public String toString() {
+        String pessoa = super.toString();
+        return pessoa + "Locatario{" + ", cpf=" + cpf + '}';
+    }
+    
 }

@@ -62,4 +62,9 @@ public class Apartamento {
         this.valorAluguel = valorAluguel;
     }
 
+    @Override
+    public String toString() {
+        return "Apartamento{" + "numero=" + numero + ", locatario=" + locatario + ", metragem=" + metragem + ", vagasDeGaragem=" + vagasDeGaragem + ", valorAluguel=" + valorAluguel + '}';
+    }
+
 }
