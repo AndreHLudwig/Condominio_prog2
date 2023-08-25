@@ -12,21 +12,40 @@ public class Main {
     }
     
     public static void adicionarLocatario(Condominio condominio){
-        
-        String numeroApartamento = JOptionPane.showInputDialog("Informe o número do Apartamento para cadastrar novo Morador");
+        String numeroApartamento = "";
+        Apartamento apartamento = new Apartamento();
+        boolean apartamentoEncontrado = false;
+
+        while(!apartamentoEncontrado){
+            numeroApartamento = JOptionPane.showInputDialog("Informe o número do Apartamento para cadastrar novo Morador");
+
+            for (Bloco blocoAtual : condominio.getBlocos()) {
+                for (Apartamento apartamentoAtual : blocoAtual.getApartamentos()) {
+                    if (numeroApartamento.equals(apartamentoAtual.getNumero())) {
+                        apartamento = apartamentoAtual;
+                        apartamentoEncontrado = true;
+                        break;
+                    }
+                }
+            }
+
+            if(!apartamentoEncontrado){
+                JOptionPane.showMessageDialog(null,"Apartamento não encontrado");
+            }
+        }
+
         //Pegando dados do Locatário;
-        
         String nome = JOptionPane.showInputDialog("Digite o nome do Locatário");
         String telefone = JOptionPane.showInputDialog("Digite o telefone do Locatário");
         String email = JOptionPane.showInputDialog("Informe o email do Locatário");
         String cpf = JOptionPane.showInputDialog("Informe o CPF do Locatário");
-        Locatario oLocatario = new Locatario(nome, telefone, email, cpf);
+        Locatario locatario = new Locatario(nome, telefone, email, cpf);
+
+        apartamento.setLocatario(locatario);
         
-        //apartamento.setLocatario(oLocatario);
-        
-        //oLocatario.setApartamento(apartamento);
+        locatario.setApartamento(apartamento);
          
-        String sucesso = JOptionPane.showInputDialog("Locatário cadastrado com sucesso!");
+        JOptionPane.showMessageDialog(null,"Locatário cadastrado com sucesso!");
     }
 
     public static Condominio iniciaCondominio(){
