@@ -16,6 +16,11 @@ public class Locatario extends Pessoa{
         super(nome, telefone, email);
         this.cpf = cpf;
     }
+    
+    public Locatario(){
+        super("", "", "");
+        this.cpf = "";
+    }
 
     public Apartamento getApartamento() {
         return apartamento;
@@ -36,7 +41,9 @@ public class Locatario extends Pessoa{
     @Override
     public String toString() {
         String pessoa = super.toString();
-        return pessoa + "Locatario{" + ", cpf=" + cpf + '}';
+        return "Locatario:" + "\n" +
+                pessoa + "\n" +
+                "CPF: " + cpf;
     }
     
 }

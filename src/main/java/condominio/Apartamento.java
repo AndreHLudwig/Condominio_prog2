@@ -20,8 +20,9 @@ public class Apartamento {
         this.metragem = metragem;
         this.vagasDeGaragem = vagasDeGaragem;
         this.valorAluguel = 0;
+        this.locatario = new Locatario();
     }
-
+    
     public Apartamento() {
     }
 
@@ -67,7 +68,9 @@ public class Apartamento {
 
     @Override
     public String toString() {
-        return "Apartamento{" + "numero=" + numero + ", locatario=" + locatario + ", metragem=" + metragem + ", vagasDeGaragem=" + vagasDeGaragem + ", valorAluguel=" + valorAluguel + '}';
+        return "\n          Apto nº: " + numero + "\n" 
+                + " Locatário: " + locatario.getNome() + "\t" + "    Metragem: " + metragem + "\n" 
+                + " Vagas de Garagem: " + vagasDeGaragem + "\t" + "    Valor do Aluguel: " + valorAluguel + "\n";
     }
 
 }

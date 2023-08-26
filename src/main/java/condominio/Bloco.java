@@ -57,8 +57,10 @@ public class Bloco {
 
     @Override
     public String toString() {
-        return "Bloco{"  + ", nome=" + nome + ", andares=" + andares + 
-                ", vagasDeGaragem=" + vagasDeGaragem + "apartamentos=" + apartamentos +'}';
+        return    nome + "\n" 
+                + "Quant. de Andares: " + andares + "\n" 
+                + "Vagas De Garagem: " + vagasDeGaragem + "\n" + "---------------" + "\n"
+                + "Apartamentos" + apartamentos+ "\n";
     }
      
 }

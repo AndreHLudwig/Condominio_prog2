@@ -5,6 +5,7 @@
 package condominio;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +27,7 @@ public class Administrador extends Pessoa{
         return novoAluguel;
     }
 
-    public void calcularNovoAluguelGeral(){
+    public void calcularAluguelGeral(){
         CalculadoraAluguel calculadoraAluguel = new CalculadoraAluguel();
         ArrayList<Bloco> blocos = this.condominio.getBlocos();
         for(Bloco bloco : blocos){
@@ -51,11 +52,54 @@ public class Administrador extends Pessoa{
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+    
+    public void adicionarLocatario(){
+        String numeroApartamento = "";
+        Apartamento apartamento = new Apartamento();
+        boolean apartamentoEncontrado = false;
+
+        while(!apartamentoEncontrado){
+            numeroApartamento = JOptionPane.showInputDialog("Informe o número do Apartamento para cadastrar novo Morador ou FIM para sair!");
+            if (numeroApartamento.equalsIgnoreCase("FIM")){
+                break;
+            }
+            else{
+                for (Bloco blocoAtual : this.condominio.getBlocos()) {
+                    for (Apartamento apartamentoAtual : blocoAtual.getApartamentos()) {
+                        if (numeroApartamento.equals(apartamentoAtual.getNumero())) {
+                            apartamento = apartamentoAtual;
+                            apartamentoEncontrado = true;
+                            break;
+                        }
+                    }
+                }
+
+                if(!apartamentoEncontrado){
+                    JOptionPane.showMessageDialog(null,"Apartamento não encontrado");
+                }
+            
+                    //Pegando dados do Locatário;
+                    String nome = JOptionPane.showInputDialog("Digite o nome do Locatário");
+                    String telefone = JOptionPane.showInputDialog("Digite o telefone do Locatário");
+                    String email = JOptionPane.showInputDialog("Informe o email do Locatário");
+                    String cpf = JOptionPane.showInputDialog("Informe o CPF do Locatário");
+                    Locatario locatario = new Locatario(nome, telefone, email, cpf);
+
+                    apartamento.setLocatario(locatario);
+
+                    locatario.setApartamento(apartamento);
+
+                    JOptionPane.showMessageDialog(null,"Locatário cadastrado com sucesso!");
+            }
+        }
+    }
 
     @Override
     public String toString() {
         String pessoa = super.toString();
-        return pessoa + "Administrador{" + "condominio=" + condominio + ", cnpj=" + cnpj + '}';
+        return "Administrador:" + "\n" +
+                pessoa + "\n" 
+                + "CNPJ: " + cnpj;
     }
     
     

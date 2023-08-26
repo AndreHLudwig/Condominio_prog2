@@ -7,47 +7,23 @@ public class Main {
     public static void main(String[] args) {
         Condominio condominio = iniciaCondominio();
         Administrador administrador = new Administrador("Geraldo Varela", "47988165885", "geraldo.varela@udesc.br", condominio, "83.891.283/0001-36");
-        administrador.calcularNovoAluguelGeral();
-        adicionarLocatario(condominio);
+        administrador.calcularAluguelGeral();
+        
+        String continuar = "";
+        while(!continuar.equalsIgnoreCase("N")){
+            administrador.adicionarLocatario();
+            
+            continuar = JOptionPane.showInputDialog("Dejesa continuar? S/N");
+        
+        }
+        
+        JOptionPane.showMessageDialog(null, condominio);
+        
+        
     }
     
-    public static void adicionarLocatario(Condominio condominio){
-        String numeroApartamento = "";
-        Apartamento apartamento = new Apartamento();
-        boolean apartamentoEncontrado = false;
-
-        while(!apartamentoEncontrado){
-            numeroApartamento = JOptionPane.showInputDialog("Informe o número do Apartamento para cadastrar novo Morador");
-
-            for (Bloco blocoAtual : condominio.getBlocos()) {
-                for (Apartamento apartamentoAtual : blocoAtual.getApartamentos()) {
-                    if (numeroApartamento.equals(apartamentoAtual.getNumero())) {
-                        apartamento = apartamentoAtual;
-                        apartamentoEncontrado = true;
-                        break;
-                    }
-                }
-            }
-
-            if(!apartamentoEncontrado){
-                JOptionPane.showMessageDialog(null,"Apartamento não encontrado");
-            }
-        }
-
-        //Pegando dados do Locatário;
-        String nome = JOptionPane.showInputDialog("Digite o nome do Locatário");
-        String telefone = JOptionPane.showInputDialog("Digite o telefone do Locatário");
-        String email = JOptionPane.showInputDialog("Informe o email do Locatário");
-        String cpf = JOptionPane.showInputDialog("Informe o CPF do Locatário");
-        Locatario locatario = new Locatario(nome, telefone, email, cpf);
-
-        apartamento.setLocatario(locatario);
-        
-        locatario.setApartamento(apartamento);
-         
-        JOptionPane.showMessageDialog(null,"Locatário cadastrado com sucesso!");
-    }
-
+    
+    
     public static Condominio iniciaCondominio(){
         Condominio condominio = new Condominio("Condomínio UDESC", "Rua Dr. Getúlio Vargas, 2822, Bela Vista - Ibirama/SC", 200, 8, 100);
         Bloco bloco1 = new Bloco("Bloco das Camélias", 3, 6);
@@ -60,10 +36,11 @@ public class Main {
         Apartamento ap11 = new Apartamento("11", 80, 1);
         Apartamento ap12 = new Apartamento("12", 80, 1);
         Apartamento ap13 = new Apartamento("13", 100, 1);
-        Apartamento ap14 = new Apartamento("14", 100, 1);
-        Apartamento ap15 = new Apartamento("15", 90, 1);
-        Apartamento ap16 = new Apartamento("16", 110, 1);
-        Apartamento[] apartamentosBloco1Array = {ap11, ap12, ap13, ap14, ap15, ap16};
+//        Apartamento ap14 = new Apartamento("14", 100, 1);
+//        Apartamento ap15 = new Apartamento("15", 90, 1);
+//        Apartamento ap16 = new Apartamento("16", 110, 1);
+
+        Apartamento[] apartamentosBloco1Array = {ap11, ap12, ap13};
         ArrayList<Apartamento> apartamentosBloco1 = new ArrayList<>();
         for(int i = 0; i < apartamentosBloco1Array.length; i++){
             apartamentosBloco1.add(apartamentosBloco1Array[i]);
@@ -73,10 +50,11 @@ public class Main {
         Apartamento ap21 = new Apartamento("21", 80, 1);
         Apartamento ap22 = new Apartamento("22", 80, 1);
         Apartamento ap23 = new Apartamento("23", 90, 2);
-        Apartamento ap24 = new Apartamento("24", 90, 2);
-        Apartamento ap25 = new Apartamento("25", 100, 3);
-        Apartamento ap26 = new Apartamento("26", 100, 3);
-        Apartamento[] apartamentosBloco2Array = {ap21, ap22, ap23, ap24, ap25, ap26};
+//        Apartamento ap24 = new Apartamento("24", 90, 2);
+//        Apartamento ap25 = new Apartamento("25", 100, 3);
+//        Apartamento ap26 = new Apartamento("26", 100, 3);
+
+        Apartamento[] apartamentosBloco2Array = {ap21, ap22, ap23};
         ArrayList<Apartamento> apartamentosBloco2 = new ArrayList<>();
         for(int i = 0; i < apartamentosBloco2Array.length; i++){
             apartamentosBloco2.add(apartamentosBloco2Array[i]);

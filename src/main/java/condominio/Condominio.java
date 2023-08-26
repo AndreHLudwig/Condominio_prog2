@@ -77,7 +77,10 @@ public class Condominio {
 
     @Override
     public String toString() {
-        return "Condominio{" + "blocos=" + blocos + ", nome=" + nome + ", endereco=" + endereco  + '}';
+        return "Condominio: "  + nome + "\n" 
+                +  "Endereço: " + endereco + "\n"
+                + "--------" + "\n"
+                + blocos;
     }
 
 }
