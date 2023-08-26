@@ -79,6 +79,9 @@ public class Condominio {
     public String toString() {
         return "Condominio: "  + nome + "\n" 
                 +  "Endereço: " + endereco + "\n"
+                +  "Taxa de condomínio: R$ " + taxaMensalCondominio + "\n"
+                +  "Valor/M²: R$ " + fatorMultiplicadorDeMetragem + "\n"
+                +  "Mensalidade Vaga de Garagem: R$ " + valorVagaGaragem + "\n"
                 + "--------" + "\n"
                 + blocos;
     }

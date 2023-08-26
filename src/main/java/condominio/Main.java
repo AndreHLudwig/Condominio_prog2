@@ -18,8 +18,11 @@ public class Main {
         }
         
         JOptionPane.showMessageDialog(null, condominio);
-        
-        
+
+        administrador.definirNovasTaxas();
+
+        JOptionPane.showMessageDialog(null, condominio);
+
     }
     
     
