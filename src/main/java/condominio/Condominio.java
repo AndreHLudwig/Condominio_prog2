@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author 06985933599
  */
 public class Condominio {
+    private int id;
     private ArrayList <Bloco> blocos;
     private String nome;
     private String endereco;
@@ -19,12 +20,24 @@ public class Condominio {
     private double valorVagaGaragem;
 
     public Condominio(String nome, String endereco, double taxaMensalCondominio, double fatorMultiplicadorDeMetragem, double valorVagaGaragem) {
+        this.id = 0;
         this.blocos = new ArrayList<Bloco>();
         this.nome = nome;
         this.endereco = endereco;
         this.taxaMensalCondominio = taxaMensalCondominio;
         this.fatorMultiplicadorDeMetragem = fatorMultiplicadorDeMetragem;
         this.valorVagaGaragem = valorVagaGaragem;
+    }
+
+    public Condominio() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ArrayList<Bloco> getBlocos() {
