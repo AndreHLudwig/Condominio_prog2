@@ -6,9 +6,19 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class CondominioDAO implements GenericDAO<Condominio> {
+    private final Connection connection;
+
+    public CondominioDAO(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
-    public void insert(Connection connection, Condominio condominio) {
+    public Connection getConnection() {
+       return this.connection;
+    }
+
+    @Override
+    public void insert(Condominio condominio) {
         String sql = "INSERT INTO condominios(nome, endereco, taxa_mensal_condominio, fator_multiplicador_metragem, valor_vaga_garagem) VALUES (?,?,?,?,?);";
 
         try {
@@ -28,7 +38,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
     }
 
     @Override
-    public void update(Connection connection, Condominio condominio) {
+    public void update(Condominio condominio) {
         String sql = "UPDATE condominios "
                 + "SET nome = ?, "
                 + "endereco = ?, "
@@ -43,7 +53,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
             statement.setDouble(3, condominio.getTaxaMensalCondominio());
             statement.setDouble(4, condominio.getFatorMultiplicadorDeMetragem());
             statement.setDouble(5, condominio.getValorVagaGaragem());
-            statement.setInt(6, condominio.getId());
+            statement.setInt(6, condominio.getIdCondominio());
             statement.execute();
             statement.close();
             System.out.println("Condomínio alterado com sucesso!");
@@ -54,7 +64,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
     }
 
     @Override
-    public void delete(Connection connection, int id) {
+    public void delete(int id) {
         String sql = "DELETE FROM condominios WHERE id_condominio = ?";
 
         try {
@@ -74,7 +84,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
     }
 
     @Override
-    public Condominio findById(Connection connection, int id) {
+    public Condominio findById(int id) {
         String sql = "SELECT * FROM condominios WHERE id_condominio = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -82,7 +92,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
             ResultSet resultSet = statement.executeQuery();
             Condominio condominio = new Condominio();
             while (resultSet.next()) {
-                condominio.setId(resultSet.getInt("id_condominio"));
+                condominio.setIdCondominio(resultSet.getInt("id_condominio"));
                 condominio.setNome(resultSet.getString("nome"));
                 condominio.setEndereco(resultSet.getString("endereco"));
                 condominio.setTaxaMensalCondominio(resultSet.getDouble("taxa_mensal_condominio"));
@@ -98,7 +108,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
     }
 
     @Override
-    public ArrayList<Condominio> findAll(Connection connection) {
+    public ArrayList<Condominio> findAll() {
         String sql = "SELECT * FROM condominios";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -106,7 +116,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
             ArrayList<Condominio> listaCondominios = new ArrayList<>();
             while (resultSet.next()) {
                 Condominio condominio = new Condominio();
-                condominio.setId(resultSet.getInt("id_condominio"));
+                condominio.setIdCondominio(resultSet.getInt("id_condominio"));
                 condominio.setNome(resultSet.getString("nome"));
                 condominio.setEndereco(resultSet.getString("endereco"));
                 condominio.setTaxaMensalCondominio(resultSet.getDouble("taxa_mensal_condominio"));
@@ -118,7 +128,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
             statement.close();
             return listaCondominios;
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar alunos: " + e.getMessage());
+            throw new RuntimeException("Erro ao listar condomínios: " + e.getMessage());
         }
     }
 }
