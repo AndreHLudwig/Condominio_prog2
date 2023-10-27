@@ -11,16 +11,26 @@ import java.util.ArrayList;
  * @author 06985933599
  */
 public class Bloco {
+     private int idBloco;
      private ArrayList <Apartamento> apartamentos;
      private String nome;
      private int andares;
      private int vagasDeGaragem;
 
      public Bloco(String nome, int andares, int vagasDeGaragem) {
+          this.idBloco = 0;
           this.apartamentos = new ArrayList<Apartamento>();
           this.nome = nome;
           this.andares = andares;
           this.vagasDeGaragem = vagasDeGaragem;
+     }
+
+     public int getIdBloco() {
+          return idBloco;
+     }
+
+     public void setIdBloco(int idBloco) {
+          this.idBloco = idBloco;
      }
 
      public ArrayList<Apartamento> getApartamentos() {
