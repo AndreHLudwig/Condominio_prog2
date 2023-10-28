@@ -25,6 +25,10 @@ public class Bloco {
           this.vagasDeGaragem = vagasDeGaragem;
      }
 
+    public Bloco() {
+        
+    }
+
      public int getIdBloco() {
           return idBloco;
      }

@@ -103,7 +103,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
             statement.close();
             return condominio;
         } catch (SQLException e) {
-            throw new RuntimeException("Erro ao pesquisar aluno: " + e.getMessage());
+            throw new RuntimeException("Erro ao pesquisar Condominio: " + e.getMessage());
         }
     }
 
