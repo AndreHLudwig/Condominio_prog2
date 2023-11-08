@@ -1,11 +1,12 @@
 package condominio.dao;
 
+import condominio.Administrador;
 import condominio.Condominio;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class CondominioDAO implements GenericDAO<Condominio> {
+public class CondominioDAO implements GenericDAO<Condominio, Administrador> {
     private final Connection connection;
 
     public CondominioDAO(Connection connection) {
@@ -18,7 +19,7 @@ public class CondominioDAO implements GenericDAO<Condominio> {
     }
 
     @Override
-    public void insert(Condominio condominio) {
+    public void insert(Condominio condominio, Administrador administrador) {
         String sql = "INSERT INTO condominios(nome, endereco, taxa_mensal_condominio, fator_multiplicador_metragem, valor_vaga_garagem) VALUES (?,?,?,?,?);";
 
         try {

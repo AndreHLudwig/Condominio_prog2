@@ -18,7 +18,7 @@ public class Bloco {
      private int vagasDeGaragem;
 
      public Bloco(String nome, int andares, int vagasDeGaragem) {
-          this.idBloco = 0;
+          this.idBloco = 0; //TODO Confirmar: precisamos de construtor onde passamos o id?
           this.apartamentos = new ArrayList<Apartamento>();
           this.nome = nome;
           this.andares = andares;

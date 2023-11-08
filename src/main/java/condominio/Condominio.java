@@ -20,7 +20,7 @@ public class Condominio {
     private double valorVagaGaragem;
 
     public Condominio(String nome, String endereco, double taxaMensalCondominio, double fatorMultiplicadorDeMetragem, double valorVagaGaragem) {
-        this.idCondominio = 0;
+        this.idCondominio = 0; //TODO Confirmar: precisamos de construtor onde passamos o id?
         this.blocos = new ArrayList<Bloco>();
         this.nome = nome;
         this.endereco = endereco;

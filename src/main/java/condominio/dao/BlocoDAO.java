@@ -9,19 +9,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BlocoDAO{ //implements GenericDAO<Bloco>{
+public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
     private final Connection connection;
 
     public BlocoDAO(Connection connection) {
         this.connection = connection;
     }
 
-    //@Override
+    @Override
     public Connection getConnection() {
         return this.connection;
     }
-    //@Override
-    public void insert(Condominio condominio,Bloco bloco) {
+    @Override
+    public void insert(Bloco bloco, Condominio condominio) {
         String sql = "INSERT Into blocos(id_condominio, nome, andares, vagas_de_garagem) VALUES (?,?,?,?);";
         
         try {
@@ -39,7 +39,7 @@ public class BlocoDAO{ //implements GenericDAO<Bloco>{
         }
     }
 
-    //@Override
+    @Override
     public void update(Bloco bloco) {
         String sql = "UPDATE blocos "
                 + "SET nome = ?, "
@@ -59,7 +59,7 @@ public class BlocoDAO{ //implements GenericDAO<Bloco>{
         }
     }
 
-    //@Override
+    @Override
     public void delete(int idBloco) {
         String sql = "DELETE FROM blocos WHERE id_bloco = ?";
 
@@ -79,7 +79,7 @@ public class BlocoDAO{ //implements GenericDAO<Bloco>{
         }
     }
 
-    //@Override
+    @Override
     public Bloco findById(int idBloco) {
         String sql = "SELECT * FROM blocos WHERE id_bloco = ?";
         try {
@@ -89,12 +89,10 @@ public class BlocoDAO{ //implements GenericDAO<Bloco>{
             Bloco bloco = new Bloco();
             while (resultSet.next()) { 
                 bloco.setIdBloco(resultSet.getInt("id_bloco"));
+//                bloco.setApartamentos(apartamentoDAO.findbyBloco(id_bloco));
                 bloco.setNome(resultSet.getString("nome"));
                 bloco.setAndares(resultSet.getInt("andares"));
                 bloco.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));
-                //TODO Buscar apartamentos da lista
-                //
-                //
             }
             resultSet.close();
             statement.close();
@@ -104,7 +102,7 @@ public class BlocoDAO{ //implements GenericDAO<Bloco>{
         }
     }
 
-    //@Override
+    @Override
     public ArrayList<Bloco> findAll() {
         String sql = "SELECT * FROM blocos";
         try {
@@ -114,12 +112,11 @@ public class BlocoDAO{ //implements GenericDAO<Bloco>{
             while (resultSet.next()) {
                 Bloco bloco = new Bloco();
                 bloco.setIdBloco(resultSet.getInt("id_bloco"));
+//                bloco.setApartamentos(apartamentoDAO.findbyBloco(bloco));
                 bloco.setNome(resultSet.getString("nome"));
                 bloco.setAndares(resultSet.getInt("andares"));
                 bloco.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));
-                //TODO Buscar apartamentos da lista
-                //
-                
+
                 listaBlocos.add(bloco);
             }
             resultSet.close();
@@ -131,16 +128,29 @@ public class BlocoDAO{ //implements GenericDAO<Bloco>{
     }
 
     public ArrayList<Bloco> findByCondominio(Condominio condominio) {
-        //TODO retornar todos os blocos de um condomínio
-        /*EX: SELECT * FROM blocos WHERE id_condominio = 1;
-              usando o condominio.getIdCondominio*/
-        return null;
+        String sql = "SELECT * FROM blocos WHERE id_condominio = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, condominio.getIdCondominio());
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<Bloco> listaBlocos = new ArrayList<>();
+            while (resultSet.next()) {
+                Bloco bloco = new Bloco();
+                bloco.setIdBloco(resultSet.getInt("id_bloco"));
+//                bloco.setApartamentos(apartamentoDAO.findbyBloco(bloco));
+                bloco.setNome(resultSet.getString("nome"));
+                bloco.setAndares(resultSet.getInt("andares"));
+                bloco.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));
+
+                listaBlocos.add(bloco);
+            }
+            resultSet.close();
+            statement.close();
+            return listaBlocos;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar Blocos: " + e.getMessage());
+        }
 
     }
 
-//    public ArrayList<Bloco> findByListaDeBlocosDoCondominio(ArrayList<Bloco> blocos) {
-//        //TODO ?
-//
-//        return null;
-//    }
 }
