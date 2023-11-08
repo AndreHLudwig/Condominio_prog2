@@ -9,6 +9,7 @@ package condominio;
  * @author 06985933599
  */
 public class Apartamento {
+    private int idApartamento;
     private String numero;
     private Locatario locatario;
     private double metragem;
@@ -16,6 +17,7 @@ public class Apartamento {
     private double valorAluguel;
 
     public Apartamento(String numero, double metragem, int vagasDeGaragem) {
+        this.idApartamento = 0; //TODO Confirmar: precisamos de construtor onde passamos o id?
         this.numero = numero;
         this.metragem = metragem;
         this.vagasDeGaragem = vagasDeGaragem;
@@ -24,6 +26,14 @@ public class Apartamento {
     }
     
     public Apartamento() {
+    }
+
+    public int getIdApartamento() {
+        return idApartamento;
+    }
+
+    public void setIdApartamento(int idApartamento) {
+        this.idApartamento = idApartamento;
     }
 
     public String getNumero() {
