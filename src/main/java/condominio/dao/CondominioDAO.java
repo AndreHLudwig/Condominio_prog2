@@ -20,7 +20,7 @@ public class CondominioDAO implements GenericDAO<Condominio, Administrador> {
 
     @Override
     public void insert(Condominio condominio, Administrador administrador) {
-        String sql = "INSERT INTO condominios(nome, endereco, taxa_mensal_condominio, fator_multiplicador_metragem, valor_vaga_garagem) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO condominio(nome, endereco, taxa_mensal_condominio, fator_multiplicador_metragem, valor_vaga_garagem) VALUES (?,?,?,?,?);";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -40,7 +40,7 @@ public class CondominioDAO implements GenericDAO<Condominio, Administrador> {
 
     @Override
     public void update(Condominio condominio) {
-        String sql = "UPDATE condominios "
+        String sql = "UPDATE condominio "
                 + "SET nome = ?, "
                 + "endereco = ?, "
                 + "taxa_mensal_condominio = ?, "
@@ -66,7 +66,7 @@ public class CondominioDAO implements GenericDAO<Condominio, Administrador> {
 
     @Override
     public void delete(int id) {
-        String sql = "DELETE FROM condominios WHERE id_condominio = ?";
+        String sql = "DELETE FROM condominio WHERE id_condominio = ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class CondominioDAO implements GenericDAO<Condominio, Administrador> {
 
     @Override
     public Condominio findById(int id) {
-        String sql = "SELECT * FROM condominios WHERE id_condominio = ?";
+        String sql = "SELECT * FROM condominio WHERE id_condominio = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
@@ -110,7 +110,7 @@ public class CondominioDAO implements GenericDAO<Condominio, Administrador> {
 
     @Override
     public ArrayList<Condominio> findAll() {
-        String sql = "SELECT * FROM condominios";
+        String sql = "SELECT * FROM condominio";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();

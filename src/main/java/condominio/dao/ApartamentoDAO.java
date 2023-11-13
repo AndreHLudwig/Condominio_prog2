@@ -26,7 +26,7 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
 
     @Override
     public void insert(Apartamento apartamento, Bloco bloco) {
-        String sql = "INSERT Into apartamentos(id_apartamento, numero, metragem, vagas_de_garagem, valor_aluguel) VALUES (?,?,?,?,?)";
+        String sql = "INSERT Into apartamento(id_bloco, numero, metragem, vagas_de_garagem, valor_aluguel) VALUES (?,?,?,?,?)";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
 
     @Override
     public void update(Apartamento apartamento) {
-        String sql = "UPDATE apartamentos "
+        String sql = "UPDATE apartamento "
                 + "SET id_pessoa = ?, "
                 + "vagas_de_garagem = ?, "
                 + "valor_aluguel = ? "
@@ -65,7 +65,7 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
 
     @Override
     public void delete(int idApartamento) {
-        String sql = "DELETE FROM apartamentos WHERE id_apartamento = ?";
+        String sql = "DELETE FROM apartamento WHERE id_apartamento = ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -85,7 +85,7 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
 
     @Override
     public Apartamento findById(int idApartamento) {
-        String sql = "SELECT * FROM apartamentos WHERE id_apartamento = ?";
+        String sql = "SELECT * FROM apartamento WHERE id_apartamento = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, idApartamento);
@@ -109,7 +109,7 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
 
     @Override
     public ArrayList<Apartamento> findAll() {
-        String sql = "SELECT * FROM apartamentos";
+        String sql = "SELECT * FROM apartamento";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
@@ -134,7 +134,7 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
     }
 
     public ArrayList<Apartamento> findByLocatario(Locatario locatario) {
-        String sql = "SELECT * FROM apartamentos WHERE id_pessoa = ?";
+        String sql = "SELECT * FROM apartamento WHERE id_pessoa = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, locatario.getIdPessoa());

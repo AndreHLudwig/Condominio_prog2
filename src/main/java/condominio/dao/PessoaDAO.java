@@ -26,7 +26,7 @@ public class PessoaDAO {
     }
 
     public void insert(Pessoa pessoa, Pessoa x) {
-        String sql = "INSERT Into pessoas(id_pessoa, nome, telefone, email) VALUES (?,?,?,?)";
+        String sql = "INSERT Into pessoa(id_pessoa, nome, telefone, email) VALUES (?,?,?,?)";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -42,8 +42,8 @@ public class PessoaDAO {
     }
 
     public void update(Pessoa pessoa) {
-        String sql = "UPDATE pessoas "
-                + "telefone = ?, "
+        String sql = "UPDATE pessoa "
+                + "SET telefone = ?, "
                 + "email = ? "
                 + "WHERE id_pessoa = ?;";
         try {
@@ -60,7 +60,7 @@ public class PessoaDAO {
     }
 
     public void delete(int idPessoa) {
-        String sql = "DELETE FROM pessoas WHERE id_pessoa = ?";
+        String sql = "DELETE FROM pessoa WHERE id_pessoa = ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);

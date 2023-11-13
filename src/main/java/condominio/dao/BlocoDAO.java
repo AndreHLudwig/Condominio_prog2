@@ -22,7 +22,7 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
     }
     @Override
     public void insert(Bloco bloco, Condominio condominio) {
-        String sql = "INSERT Into blocos(id_condominio, nome, andares, vagas_de_garagem) VALUES (?,?,?,?);";
+        String sql = "INSERT Into bloco(id_condominio, nome, andares, vagas_de_garagem) VALUES (?,?,?,?);";
         
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -41,7 +41,7 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
 
     @Override
     public void update(Bloco bloco) {
-        String sql = "UPDATE blocos "
+        String sql = "UPDATE bloco "
                 + "SET nome = ?, "
                 + "vagas_de_garagem = ? " //atenção as vírgulas
                 + "WHERE id_bloco = ?;";
@@ -61,7 +61,7 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
 
     @Override
     public void delete(int idBloco) {
-        String sql = "DELETE FROM blocos WHERE id_bloco = ?";
+        String sql = "DELETE FROM bloco WHERE id_bloco = ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -81,7 +81,7 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
 
     @Override
     public Bloco findById(int idBloco) {
-        String sql = "SELECT * FROM blocos WHERE id_bloco = ?";
+        String sql = "SELECT * FROM bloco WHERE id_bloco = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, idBloco);
@@ -104,7 +104,7 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
 
     @Override
     public ArrayList<Bloco> findAll() {
-        String sql = "SELECT * FROM blocos";
+        String sql = "SELECT * FROM bloco";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
@@ -128,7 +128,7 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
     }
 
     public ArrayList<Bloco> findByCondominio(Condominio condominio) {
-        String sql = "SELECT * FROM blocos WHERE id_condominio = ?";
+        String sql = "SELECT * FROM bloco WHERE id_condominio = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, condominio.getIdCondominio());
