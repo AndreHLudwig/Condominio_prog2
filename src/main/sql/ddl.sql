@@ -52,6 +52,15 @@ alter table locatario add (
     foreign key (id_apartamento) references apartamento(id_apartamento)
     );
 
+create table administrador (
+                           id_pessoa int not null,
+                           cnpj varchar(14) not null,
+                           id_condominio int not null,
+                           primary key (id_pessoa),
+                           foreign key (id_pessoa) references pessoa(id_pessoa),
+                           foreign key (id_condominio) references condominio(id_condominio)
+);
+
 create view pessoa_locatario as
 select
     l.id_pessoa,
@@ -62,6 +71,17 @@ select
     l.cpf
 from pessoa p
          inner join locatario l on p.id_pessoa = l.id_pessoa;
+
+create view pessoa_administrador as
+select
+    a.id_pessoa,
+    a.id_condominio,
+    p.nome,
+    p.telefone,
+    p.email,
+    a.cnpj
+from pessoa p
+         inner join administrador a on p.id_pessoa = a.id_pessoa;
 
 create view condominio_bloco as
 select

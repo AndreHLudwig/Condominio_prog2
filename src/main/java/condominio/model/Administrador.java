@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package condominio;
+package condominio.model;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -19,6 +19,13 @@ public class Administrador extends Pessoa {
         this.condominio = condominio;
         this.cnpj = cnpj;
     }
+
+    public Administrador(){
+        super("","","");
+        this.cnpj = "";
+        this.condominio = new Condominio();
+    }
+
 
     public double calcularNovoAluguel(Apartamento apartamento) {
         CalculadoraAluguel calculadoraAluguel = new CalculadoraAluguel();

@@ -1,16 +1,12 @@
 package condominio.dao;
 
-import condominio.Apartamento;
-import condominio.Bloco;
-import condominio.Condominio;
-import condominio.Locatario;
+import condominio.model.Apartamento;
+import condominio.model.Bloco;
+import condominio.model.Condominio;
+import condominio.model.Locatario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Properties;
 
 public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
     private final Connection connection;
@@ -29,14 +25,29 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
         String sql = "INSERT Into apartamento(id_bloco, numero, metragem, vagas_de_garagem, valor_aluguel) VALUES (?,?,?,?,?)";
 
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, bloco.getIdBloco());
             statement.setString(2, apartamento.getNumero());
             statement.setDouble(3, apartamento.getMetragem());
             statement.setInt(4, apartamento.getVagasDeGaragem());
             statement.setDouble(5, apartamento.getValorAluguel());
-            System.out.println("Apartamento inserido com sucesso!");
 
+            int affectedRows = statement.executeUpdate();
+
+            if ((affectedRows > 0)) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if(generatedKeys.next()) {
+                    int idApartamento = generatedKeys.getInt(1);
+                    apartamento.setIdApartamento(idApartamento);
+                    System.out.println("Apartamento inserido com sucesso! ID: " + idApartamento);
+                } else {
+                    throw new SQLException("A inserção falhou, nenhum ID gerado.");
+                }
+                generatedKeys.close();
+            } else  {
+                throw new SQLException("A inserção falhou, nenhum registro afetado.");
+            }
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao inserir Apartamento: " + e.getMessage());
         }
@@ -45,7 +56,7 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
     @Override
     public void update(Apartamento apartamento) {
         String sql = "UPDATE apartamento "
-                + "SET id_pessoa = ?, "
+                + "SET id_locatario = ?, "
                 + "vagas_de_garagem = ?, "
                 + "valor_aluguel = ? "
                 + "WHERE id_apartamento = ?;";
@@ -134,10 +145,37 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
     }
 
     public ArrayList<Apartamento> findByLocatario(Locatario locatario) {
-        String sql = "SELECT * FROM apartamento WHERE id_pessoa = ?";
+        String sql = "SELECT * FROM apartamento WHERE id_locatario = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, locatario.getIdPessoa());
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<Apartamento> listaApartamentos = new ArrayList<>();
+            while (resultSet.next()) {
+                Apartamento apartamento = new Apartamento();
+                apartamento.setIdApartamento(resultSet.getInt("id_apartamento"));
+//                apartamento.setLocatario(locatarioDAO.findbyId(locatario.getIdPessoa()));
+                apartamento.setNumero(resultSet.getString("numero"));
+                apartamento.setMetragem(resultSet.getDouble("metragem"));
+                apartamento.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));
+                apartamento.setValorAluguel(resultSet.getDouble("valor_aluguel"));
+
+                listaApartamentos.add(apartamento);
+            }
+            resultSet.close();
+            statement.close();
+            return listaApartamentos;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar Apartamentos: " + e.getMessage());
+        }
+
+    }
+
+    public ArrayList<Apartamento> findByBloco(Bloco bloco) {
+        String sql = "SELECT * FROM apartamento WHERE id_bloco = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, bloco.getIdBloco());
             ResultSet resultSet = statement.executeQuery();
             ArrayList<Apartamento> listaApartamentos = new ArrayList<>();
             while (resultSet.next()) {

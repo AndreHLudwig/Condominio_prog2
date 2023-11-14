@@ -1,12 +1,9 @@
 package condominio.dao;
 
-import condominio.Bloco;
-import condominio.Condominio;
+import condominio.model.Bloco;
+import condominio.model.Condominio;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
@@ -25,15 +22,28 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
         String sql = "INSERT Into bloco(id_condominio, nome, andares, vagas_de_garagem) VALUES (?,?,?,?);";
         
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, condominio.getIdCondominio());
             statement.setString(2, bloco.getNome());
             statement.setInt(3, bloco.getAndares());
             statement.setInt(4, bloco.getVagasDeGaragem());
-            statement.execute();
-            statement.close();
-            System.out.println("Bloco inserido com sucesso!");
 
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows > 0) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int idBloco = generatedKeys.getInt(1);
+                    bloco.setIdBloco(idBloco);
+                    System.out.println("Bloco inserido com sucesso! ID:" + idBloco);
+                } else {
+                    throw new SQLException("A inserção falhou, nenhum ID gerado.");
+                }
+                generatedKeys.close();
+            } else {
+                throw new SQLException("A inserção falhou, nenhum registro afetado.");
+            }
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao inserir Bloco: " + e.getMessage());
         }

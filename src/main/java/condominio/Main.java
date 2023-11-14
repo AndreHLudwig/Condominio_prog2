@@ -1,15 +1,18 @@
 package condominio;
 
-import condominio.dao.CondominioDAO;
+import condominio.dao.*;
 import condominio.dbConnection.DbConnection;
+import condominio.model.Apartamento;
+import condominio.model.Bloco;
+import condominio.model.Condominio;
+import condominio.model.Locatario;
+import condominio.service.Service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.swing.JOptionPane;
 
 public class Main {
-    private static final Connection con = DbConnection.getConnection();
     public static void main(String[] args) {
 
 //        try {
@@ -18,14 +21,52 @@ public class Main {
 //            System.out.println("Erro ao conectar ao banco de dados: " + e.getMessage());
 //        }
 
-        CondominioDAO condominioDao = new CondominioDAO(con);
+        Connection connection = DbConnection.getConnection();
+
+        //DAOs
+        CondominioDAO condominioDao = new CondominioDAO(connection);
+        BlocoDAO blocoDAO = new BlocoDAO(connection);
+        ApartamentoDAO apartamentoDAO = new ApartamentoDAO(connection);
+        PessoaDAO pessoaDAO = new PessoaDAO(connection);
+        LocatarioDAO locatarioDAO = new LocatarioDAO(connection);
+        AdministradorDAO adminDAO = new AdministradorDAO(connection);
+
+        //Service
+        Service service = new Service(condominioDao, blocoDAO, apartamentoDAO, pessoaDAO, locatarioDAO, adminDAO);
 
         Condominio condominio = iniciaCondominio();
-        Condominio condominio2 = iniciaCondominio();
-//        dao.insert(con, condominio);
-//        dao.insert(con, condominio2);
-        System.out.println(condominioDao.findById(4));
-        System.out.println(condominioDao.findAll());
+        Bloco bloco = condominio.getBlocos().get(0);
+        condominio.setIdCondominio(2);
+        bloco.setIdBloco(1);
+//        ArrayList<Apartamento> apartamentos = bloco.getApartamentos();
+//        apartamentoDAO.insert(apartamentos.get(0), bloco);
+//        Condominio condominio2 = iniciaCondominio();
+        condominio = service.getCondominioCompleto(2);
+//        Condominio condominio2 = service.getCondominioCompleto(2);
+//        System.out.println(condominio);
+//        System.out.println(condominio2);
+        Locatario locatario = condominio.getBlocos().get(0).getApartamentos().get(0).getLocatario();
+        Apartamento apartamento = condominio.getBlocos().get(0).getApartamentos().get(0);
+
+        service.insertPessoaLocatario(locatario, apartamento);
+        System.out.println(locatario);
+
+//        condominioDao.insert(condominio, null);
+//        condominioDao.insert(condominio2, null);
+//        Condominio condominio = condominioDao.findById(1);
+//        Condominio condominio2 = condominioDao.findById(2);
+//        condominio.setIdCondominio(1);
+//        condominio.setIdCondominio(2);
+//
+//        for (Bloco bloco : condominio.getBlocos()) {
+//            blocoDAO.insert(bloco, condominio);
+//        }
+//        for (Bloco bloco : condominio2.getBlocos()) {
+//            blocoDAO.insert(bloco, condominio);
+//        }
+
+//        System.out.println(condominioDao.findById(4));
+//        System.out.println(condominioDao.findAll());
 
 //        Administrador administrador = new Administrador("Geraldo Varela", "47988165885", "geraldo.varela@udesc.br", condominio, "83.891.283/0001-36");
 //        administrador.calcularAluguelGeral();
@@ -44,7 +85,7 @@ public class Main {
 //
 //        JOptionPane.showMessageDialog(null, condominio);
 
-        DbConnection.closeConnection(con);
+        DbConnection.closeConnection(connection);
     }
     
     //Métodos dev - serão excluídos assim que não forem mais necessários

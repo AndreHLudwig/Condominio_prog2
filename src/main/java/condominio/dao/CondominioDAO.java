@@ -1,7 +1,7 @@
 package condominio.dao;
 
-import condominio.Administrador;
-import condominio.Condominio;
+import condominio.model.Administrador;
+import condominio.model.Condominio;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,16 +23,29 @@ public class CondominioDAO implements GenericDAO<Condominio, Administrador> {
         String sql = "INSERT INTO condominio(nome, endereco, taxa_mensal_condominio, fator_multiplicador_metragem, valor_vaga_garagem) VALUES (?,?,?,?,?);";
 
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, condominio.getNome());
             statement.setString(2, condominio.getEndereco());
             statement.setDouble(3, condominio.getTaxaMensalCondominio());
             statement.setDouble(4, condominio.getFatorMultiplicadorDeMetragem());
             statement.setDouble(5, condominio.getValorVagaGaragem());
-            statement.execute();
-            statement.close();
-            System.out.println("Condomínio inserido com sucesso!");
 
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows > 0) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int idCondominio = generatedKeys.getInt(1);
+                    condominio.setIdCondominio(idCondominio);
+                    System.out.println("Condomínio inserido com sucesso! ID: " + idCondominio);
+                } else {
+                    throw new SQLException("A inserção falhou, nenhum ID gerado.");
+                }
+                generatedKeys.close();
+            } else {
+                throw new SQLException("A inserção falhou, nenhum registro afetado.");
+            }
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao inserir Condomínio: " + e.getMessage());
         }

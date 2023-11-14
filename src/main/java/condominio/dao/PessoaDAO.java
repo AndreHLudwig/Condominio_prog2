@@ -4,10 +4,10 @@
  */
 package condominio.dao;
 
-import condominio.Pessoa;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import condominio.model.Locatario;
+import condominio.model.Pessoa;
+
+import java.sql.*;
 
 /**
  *
@@ -25,17 +25,37 @@ public class PessoaDAO {
         return this.connection;
     }
 
-    public void insert(Pessoa pessoa, Pessoa x) {
-        String sql = "INSERT Into pessoa(id_pessoa, nome, telefone, email) VALUES (?,?,?,?)";
+
+    /**
+     * Insere na tabela Pessoa e seta internamente o id_pessoa gerado pela Db no parâmetro pessoa
+     * (podendo assim ser usado para inserir nas tabelas Locatario e Administrador em seguida).
+     * @param pessoa
+     */
+    public void insert(Pessoa pessoa) {
+        String sql = "INSERT Into pessoa(nome, telefone, email) VALUES (?,?,?)";
 
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, pessoa.getIdPessoa());
-            statement.setString(2, pessoa.getNome());
-            statement.setString(3, pessoa.getTelefone());
-            statement.setString(4, pessoa.getEmail());
-            System.out.println("Pessoa adicionada com sucesso!");
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, pessoa.getNome());
+            statement.setString(2, pessoa.getTelefone());
+            statement.setString(3, pessoa.getEmail());
 
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows > 0) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int idPessoa = generatedKeys.getInt(1);
+                    pessoa.setIdPessoa(idPessoa);
+                    System.out.println("Pessoa adicionada com sucesso! ID: " + idPessoa);
+                } else {
+                    throw new SQLException("A inserção falhou, nenhum ID gerado.");
+                }
+                generatedKeys.close();
+            } else {
+                throw new SQLException("A inserção falhou, nenhum registro afetado.");
+            }
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao adicionar pessoa: " + e.getMessage());
         }

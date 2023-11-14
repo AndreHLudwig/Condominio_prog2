@@ -4,8 +4,8 @@
  */
 package condominio.dao;
 
-import condominio.Apartamento;
-import condominio.Locatario;
+import condominio.model.Apartamento;
+import condominio.model.Locatario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,9 +36,10 @@ public class LocatarioDAO implements GenericDAO<Locatario, Apartamento>{
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, locatario.getIdPessoa());
             statement.setString(2, locatario.getCpf());
-            statement.setInt(3, locatario.getApartamento().getIdApartamento());
+            statement.setInt(3, (apto == null) ? locatario.getApartamento().getIdApartamento() : apto.getIdApartamento());
+            statement.executeUpdate();
+            statement.close();
             System.out.println("Locatário inserido com sucesso!");
-
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao inserir Locatário: " + e.getMessage());
         }
@@ -80,12 +81,11 @@ public class LocatarioDAO implements GenericDAO<Locatario, Apartamento>{
             Locatario locatario = new Locatario();
             while (resultSet.next()) {
                 locatario.setIdPessoa(resultSet.getInt("id_pessoa"));
-//              apartamento.setLocatario(locatarioDAO.findbyApartamento(idApartamento));
+                locatario.getApartamento().setIdApartamento(resultSet.getInt("id_apartamento"));
                 locatario.setNome(resultSet.getString("nome"));
                 locatario.setTelefone(resultSet.getString("telefone"));
                 locatario.setEmail(resultSet.getString("email"));
                 locatario.setCpf(resultSet.getString("cpf"));
-                locatario.getApartamento().setIdApartamento(resultSet.getInt("id_apartamento"));
             }
             resultSet.close();
             statement.close();
