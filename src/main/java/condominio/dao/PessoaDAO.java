@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package condominio.dao;
 
-import condominio.model.Locatario;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import condominio.model.Pessoa;
 
-import java.sql.*;
-
-/**
- *
- * @author andre
- */
 public class PessoaDAO {
 
     private final Connection connection;
@@ -25,12 +20,6 @@ public class PessoaDAO {
         return this.connection;
     }
 
-
-    /**
-     * Insere na tabela Pessoa e seta internamente o id_pessoa gerado pela Db no parâmetro pessoa
-     * (podendo assim ser usado para inserir nas tabelas Locatario e Administrador em seguida).
-     * @param pessoa
-     */
     public void insert(Pessoa pessoa) {
         String sql = "INSERT Into pessoa(nome, telefone, email) VALUES (?,?,?)";
 

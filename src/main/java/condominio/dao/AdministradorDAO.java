@@ -1,15 +1,14 @@
 package condominio.dao;
 
-import condominio.model.Administrador;
-import condominio.model.Apartamento;
-import condominio.model.Condominio;
-import condominio.model.Locatario;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
+
+import condominio.model.Administrador;
+import condominio.model.Condominio;
 
 public class AdministradorDAO implements GenericDAO<Administrador, Condominio>{
     private final Connection connection;

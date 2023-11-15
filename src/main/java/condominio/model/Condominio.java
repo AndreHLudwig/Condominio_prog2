@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package condominio.model;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author 06985933599
- */
 public class Condominio {
     private int idCondominio;
     private ArrayList <Bloco> blocos;

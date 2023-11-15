@@ -1,11 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package screens;
+package condominio.screens;
 
-import condominio.dao.*;
-import condominio.service.*;
 import condominio.wrapper.Wrapper;
 /**
  *
@@ -89,9 +83,9 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadastrarCondominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarCondominioActionPerformed
-        // TODO add your handling code here:
-        CadastroCondominio cadastroCondominio = new CadastroCondominio(wrapper);
+        CadastroCondominio cadastroCondominio = new CadastroCondominio(wrapper, this);
         cadastroCondominio.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btCadastrarCondominioActionPerformed
 
     private void btListarCondominiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarCondominiosActionPerformed

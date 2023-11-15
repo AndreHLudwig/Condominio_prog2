@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package screens;
+package condominio.screens;
 
 import condominio.model.Condominio;
-import condominio.dao.CondominioDAO;
 import condominio.wrapper.Wrapper;
 import javax.swing.JOptionPane;
 
@@ -15,12 +10,14 @@ import javax.swing.JOptionPane;
  */
 public class CadastroCondominio extends javax.swing.JFrame {
     Wrapper wrapper;
+    TelaInicial telaInicial;
     /**
      * Creates new form CadastroCondominio
      */
-    public CadastroCondominio(Wrapper wrapper) {
+    public CadastroCondominio(Wrapper wrapper, TelaInicial telaInicial) {
         initComponents();
         this.wrapper = wrapper;
+        this.telaInicial = telaInicial;
     }
 
 
@@ -175,12 +172,11 @@ public class CadastroCondominio extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEnderecoActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        // TODO add your handling code here:
         this.setVisible(false);
+        this.telaInicial.setVisible(true);
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        // TODO add your handling code here:
         cadastrarNovoCondominio();
     }//GEN-LAST:event_btCadastrarActionPerformed
 

@@ -2,7 +2,6 @@ package condominio.dao;
 
 import condominio.model.Apartamento;
 import condominio.model.Bloco;
-import condominio.model.Condominio;
 import condominio.model.Locatario;
 
 import java.sql.*;
@@ -104,7 +103,6 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
             Apartamento apartamento = new Apartamento();
             while (resultSet.next()) {
                 apartamento.setIdApartamento(resultSet.getInt("id_apartamento"));
-//                apartamento.setLocatario(locatarioDAO.findbyApartamento(idApartamento));
                 apartamento.setNumero(resultSet.getString("numero"));
                 apartamento.setMetragem(resultSet.getDouble("metragem"));
                 apartamento.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));
@@ -128,7 +126,6 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
             while (resultSet.next()) {
                 Apartamento apartamento = new Apartamento();
                 apartamento.setIdApartamento(resultSet.getInt("id_apartamento"));
-//                apartamento.setLocatario(locatarioDAO.findbyApartamento(idApartamento));
                 apartamento.setNumero(resultSet.getString("numero"));
                 apartamento.setMetragem(resultSet.getDouble("metragem"));
                 apartamento.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));
@@ -154,7 +151,6 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
             while (resultSet.next()) {
                 Apartamento apartamento = new Apartamento();
                 apartamento.setIdApartamento(resultSet.getInt("id_apartamento"));
-//                apartamento.setLocatario(locatarioDAO.findbyId(locatario.getIdPessoa()));
                 apartamento.setNumero(resultSet.getString("numero"));
                 apartamento.setMetragem(resultSet.getDouble("metragem"));
                 apartamento.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));
@@ -181,7 +177,6 @@ public class ApartamentoDAO implements GenericDAO<Apartamento, Bloco>{
             while (resultSet.next()) {
                 Apartamento apartamento = new Apartamento();
                 apartamento.setIdApartamento(resultSet.getInt("id_apartamento"));
-//                apartamento.setLocatario(locatarioDAO.findbyId(locatario.getIdPessoa()));
                 apartamento.setNumero(resultSet.getString("numero"));
                 apartamento.setMetragem(resultSet.getDouble("metragem"));
                 apartamento.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));

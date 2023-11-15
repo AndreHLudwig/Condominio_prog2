@@ -3,6 +3,7 @@ package condominio.dbConnection;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+
 import java.util.Properties;
 
 public class DbConnection {
@@ -14,7 +15,6 @@ public class DbConnection {
             String user = prop.getProperty("user");
             String password = prop.getProperty("password");
 
-            //Class.forName("com.mysql.cj.jdbc.Driver"); // <-- somente é necessário no JDBC Driver <= 3.0 -- verificar
             Connection con = DriverManager.getConnection(jdbcUrl, user, password);
             System.out.println("Conectado ao banco de dados " + con.toString());
 

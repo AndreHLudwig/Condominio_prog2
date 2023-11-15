@@ -4,18 +4,16 @@
  */
 package condominio.dao;
 
-import condominio.model.Apartamento;
-import condominio.model.Locatario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 
-/**
- *
- * @author andre
- */
+import condominio.model.Apartamento;
+import condominio.model.Locatario;
+
 public class LocatarioDAO implements GenericDAO<Locatario, Apartamento>{
     private final Connection connection;
     
@@ -47,7 +45,7 @@ public class LocatarioDAO implements GenericDAO<Locatario, Apartamento>{
 
     @Override
     public void update(Locatario locatario) {
-        //Nothing TODO
+        //Nothing
     }
 
     @Override
@@ -105,7 +103,6 @@ public class LocatarioDAO implements GenericDAO<Locatario, Apartamento>{
             while (resultSet.next()) {
                 Locatario locatario = new Locatario();
                 locatario.setIdPessoa(resultSet.getInt("id_pessoa"));
-//              apartamento.setLocatario(locatarioDAO.findbyApartamento(idApartamento));
                 locatario.setNome(resultSet.getString("nome"));
                 locatario.setTelefone(resultSet.getString("telefone"));
                 locatario.setEmail(resultSet.getString("email"));
@@ -130,7 +127,6 @@ public class LocatarioDAO implements GenericDAO<Locatario, Apartamento>{
             Locatario locatario = new Locatario();
             while (resultSet.next()) {
                 locatario.setIdPessoa(resultSet.getInt("id_pessoa"));
-//              apartamento.setLocatario(locatarioDAO.findbyApartamento(idApartamento));
                 locatario.setNome(resultSet.getString("nome"));
                 locatario.setTelefone(resultSet.getString("telefone"));
                 locatario.setEmail(resultSet.getString("email"));

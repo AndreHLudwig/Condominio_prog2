@@ -1,10 +1,15 @@
 package condominio.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+
+import java.util.ArrayList;
+
 import condominio.model.Administrador;
 import condominio.model.Condominio;
-
-import java.sql.*;
-import java.util.ArrayList;
 
 public class CondominioDAO implements GenericDAO<Condominio, Administrador> {
     private final Connection connection;
@@ -15,7 +20,7 @@ public class CondominioDAO implements GenericDAO<Condominio, Administrador> {
 
     @Override
     public Connection getConnection() {
-       return this.connection;
+        return this.connection;
     }
 
     @Override

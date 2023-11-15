@@ -1,10 +1,15 @@
 package condominio.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import java.util.ArrayList;
+
 import condominio.model.Bloco;
 import condominio.model.Condominio;
-
-import java.sql.*;
-import java.util.ArrayList;
 
 public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
     private final Connection connection;

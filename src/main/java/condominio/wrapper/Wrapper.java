@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package condominio.wrapper;
 
 import condominio.dao.*;
 import condominio.service.*;
-/**
- *
- * @author andre
- */
+
 public class Wrapper {
     public AdministradorDAO administradorDAO;
     public ApartamentoDAO apartamentoDAO;
