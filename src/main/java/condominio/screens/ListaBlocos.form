@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -26,41 +26,44 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="628" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="253" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="125" max="-2" attributes="0"/>
+                      <Component id="lbTitle" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Component id="btVoltar" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="btExcluirCondominio" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="btExcluirBloco" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
-                      <Component id="btVisualizarBlocos" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                      <Component id="btVisualizarApartamentos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btEditarCondominio" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="btNovoBloco" min="-2" pref="127" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btEditarBloco" min="-2" pref="132" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="btAtualizarLista" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btVoltar" min="-2" max="-2" attributes="0"/>
+                          <Component id="btAtualizarLista" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="131" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,24 +71,28 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="lbTitle" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="149" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="btAtualizarLista" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="82" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="btAtualizarLista" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btEditarCondominio" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                          <Component id="btVisualizarBlocos" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="btVisualizarApartamentos" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="btNovoBloco" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                          <Component id="btEditarBloco" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="btExcluirCondominio" min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                      <Component id="btVoltar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="btVoltar" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btExcluirBloco" min="-2" pref="33" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,7 +105,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tbCondominios">
+        <Component class="javax.swing.JTable" name="tbBlocos">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -106,42 +113,11 @@
               </Border>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="6">
+              <Table columnCount="3" rowCount="6">
                 <Column editable="false" title="Nome" type="java.lang.String"/>
-                <Column editable="false" title="Endere&#xe7;o" type="java.lang.String"/>
-                <Column editable="false" title="Taxa Mensal" type="java.lang.Double"/>
-                <Column editable="false" title="Valor/m&#xb2;" type="java.lang.Double"/>
-                <Column editable="false" title="Taxa Garagem" type="java.lang.Double"/>
+                <Column editable="false" title="Andares" type="java.lang.Integer"/>
+                <Column editable="false" title="Vagas Garagem" type="java.lang.Integer"/>
               </Table>
-            </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-              </TableColumnModel>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
@@ -159,9 +135,9 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lbTitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lista de Condom&#xed;nios"/>
+        <Property name="text" type="java.lang.String" value="Lista de Blocos"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btVoltar">
@@ -172,23 +148,23 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btVoltarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btVisualizarBlocos">
+    <Component class="javax.swing.JButton" name="btVisualizarApartamentos">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Visualizar Blocos"/>
+        <Property name="text" type="java.lang.String" value="Visualizar Aptos."/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btVisualizarBlocosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btVisualizarApartamentosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btEditarCondominio">
+    <Component class="javax.swing.JButton" name="btEditarBloco">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Editar Condominio"/>
+        <Property name="text" type="java.lang.String" value="Editar Bloco"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarCondominioActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditarBlocoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btExcluirCondominio">
+    <Component class="javax.swing.JButton" name="btExcluirBloco">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="99" type="rgb"/>
@@ -196,10 +172,10 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Excluir Condominio"/>
+        <Property name="text" type="java.lang.String" value="Excluir Bloco"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirCondominioActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirBlocoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btAtualizarLista">
@@ -208,6 +184,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAtualizarListaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btNovoBloco">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Novo Bloco"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNovoBlocoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -7,6 +7,7 @@ package condominio.screens;
 import condominio.model.Condominio;
 import condominio.wrapper.*;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -55,15 +56,14 @@ public class ListaDeCondominios extends javax.swing.JFrame {
         public void valueChanged(ListSelectionEvent e) {
             if (!e.getValueIsAdjusting()) {
                 int selectedRow = tbCondominios.getSelectedRow();
-                if (selectedRow != -1) {
-                    // Linha foi selecionada
-                    condominioSelecionado = condominios.get(selectedRow);
+                    if (selectedRow != -1) {
+                        // Linha foi selecionada
+                        condominioSelecionado = condominios.get(selectedRow);
                     
+                    }
                 }
             }
-        }
-        
-    });
+        });
     }
     
     public void atualizarLista(){
@@ -127,7 +127,6 @@ public class ListaDeCondominios extends javax.swing.JFrame {
         tbCondominios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbCondominios.setGridColor(new java.awt.Color(204, 204, 204));
         tbCondominios.setName(""); // NOI18N
-        tbCondominios.setRowSelectionAllowed(true);
         tbCondominios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbCondominios.setShowGrid(true);
         jScrollPane1.setViewportView(tbCondominios);
@@ -194,14 +193,14 @@ public class ListaDeCondominios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
+                        .addGap(185, 185, 185)
                         .addComponent(btVisualizarBlocos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
+                        .addGap(18, 18, 18)
                         .addComponent(btEditarCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(btAtualizarLista)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +233,13 @@ public class ListaDeCondominios extends javax.swing.JFrame {
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void btVisualizarBlocosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarBlocosActionPerformed
-        
+        if(condominioSelecionado != null) {
+            ListaBlocos listaBlocos = new ListaBlocos(wrapper, this, this.condominioSelecionado);
+            listaBlocos.setVisible(true);
+            this.setVisible(false);
+        } else {
+            exibirMensagem("Nenhum condomínio selecionado.");
+        }
     }//GEN-LAST:event_btVisualizarBlocosActionPerformed
 
     private void btEditarCondominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarCondominioActionPerformed
@@ -248,7 +253,20 @@ public class ListaDeCondominios extends javax.swing.JFrame {
     }//GEN-LAST:event_btEditarCondominioActionPerformed
 
     private void btExcluirCondominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirCondominioActionPerformed
-        
+        if (condominioSelecionado != null) {
+            int resposta = JOptionPane.showConfirmDialog(this,
+                    "Tem certeza que deseja excluir o condomínio '" + condominioSelecionado.getNome() + "'?", 
+                    "Confirmar exclusão",
+                    JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                wrapper.condominioDAO.delete(condominioSelecionado.getIdCondominio());
+                exibirMensagem("Condomínio excluído com sucesso!");
+                condominioSelecionado = null;
+                atualizarLista();
+            }
+        } else {
+            exibirMensagem("Nenhum condomínio selecionado.");
+        }
     }//GEN-LAST:event_btExcluirCondominioActionPerformed
 
     private void btAtualizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarListaActionPerformed

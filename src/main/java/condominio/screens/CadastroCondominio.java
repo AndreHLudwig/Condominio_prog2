@@ -42,7 +42,7 @@ public class CadastroCondominio extends javax.swing.JFrame {
         spinFatorMultiplicadorMetragem = new javax.swing.JSpinner();
         lbValorVagaGaragem = new javax.swing.JLabel();
         spinValorVagaGaragem = new javax.swing.JSpinner();
-        btCancelar = new javax.swing.JButton();
+        btVoltar = new javax.swing.JButton();
         btCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,10 +79,10 @@ public class CadastroCondominio extends javax.swing.JFrame {
 
         spinValorVagaGaragem.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 0.5d));
 
-        btCancelar.setText("Cancelar");
-        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btVoltar.setText("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelarActionPerformed(evt);
+                btVoltarActionPerformed(evt);
             }
         });
 
@@ -118,7 +118,7 @@ public class CadastroCondominio extends javax.swing.JFrame {
                                     .addComponent(spinValorVagaGaragem, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(72, 72, 72)
                                     .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(tfEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -155,7 +155,7 @@ public class CadastroCondominio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56))
         );
 
@@ -171,10 +171,10 @@ public class CadastroCondominio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEnderecoActionPerformed
 
-    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         this.setVisible(false);
         this.telaInicial.setVisible(true);
-    }//GEN-LAST:event_btCancelarActionPerformed
+    }//GEN-LAST:event_btVoltarActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         cadastrarNovoCondominio();
@@ -262,7 +262,7 @@ public class CadastroCondominio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrar;
-    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btVoltar;
     private javax.swing.JLabel lbEndereco;
     private javax.swing.JLabel lbFatorMultiplicadorMetragem;
     private javax.swing.JLabel lbNome;

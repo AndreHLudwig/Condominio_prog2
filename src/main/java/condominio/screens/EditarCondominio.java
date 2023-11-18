@@ -175,6 +175,7 @@ public class EditarCondominio extends javax.swing.JFrame {
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         this.setVisible(false);
         this.telaListaDeCondominios.atualizarLista();
+        this.telaListaDeCondominios.condominioSelecionado = null;
         this.telaListaDeCondominios.setVisible(true);
     }//GEN-LAST:event_btCancelarActionPerformed
 
@@ -208,6 +209,7 @@ public class EditarCondominio extends javax.swing.JFrame {
         //Limpar dados da Tela
         this.setVisible(false);
         this.telaListaDeCondominios.atualizarLista();
+        this.telaListaDeCondominios.condominioSelecionado = null;
         this.telaListaDeCondominios.setVisible(true);
     }//GEN-LAST:event_btAlterarActionPerformed
 

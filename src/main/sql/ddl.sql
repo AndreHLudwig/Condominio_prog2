@@ -106,3 +106,38 @@ select
     a.valor_aluguel
 from bloco b
          inner join apartamento a on b.id_bloco = a.id_bloco;
+-- Cascade devido a experiência de usuário, porém não é recomendado pois desfaz as restrições criadas por uma fk;
+ALTER TABLE bloco
+DROP FOREIGN KEY bloco_ibfk_1,
+ADD CONSTRAINT bloco_ibfk_2
+FOREIGN KEY (id_condominio)
+REFERENCES condominio (id_condominio)
+ON DELETE CASCADE;
+
+ALTER TABLE apartamento
+DROP FOREIGN KEY apartamento_ibfk_1,
+ADD CONSTRAINT apartamento_ibfk_3
+FOREIGN KEY (id_bloco)
+REFERENCES bloco (id_bloco)
+ON DELETE CASCADE;
+
+ALTER TABLE apartamento
+DROP FOREIGN KEY apartamento_ibfk_2,
+ADD CONSTRAINT apartamento_ibfk_4
+FOREIGN KEY (id_locatario)
+REFERENCES locatario (id_pessoa)
+ON DELETE CASCADE;
+
+ALTER TABLE locatario
+DROP FOREIGN KEY locatario_ibfk_1,
+ADD CONSTRAINT locatario_ibfk_3
+FOREIGN KEY (id_pessoa)
+REFERENCES pessoa (id_pessoa)
+ON DELETE CASCADE;
+
+ALTER TABLE locatario
+DROP FOREIGN KEY locatario_ibfk_2,
+ADD CONSTRAINT locatario_ibfk_4
+FOREIGN KEY (id_apartamento)
+REFERENCES apartamento (id_apartamento)
+ON DELETE CASCADE;
