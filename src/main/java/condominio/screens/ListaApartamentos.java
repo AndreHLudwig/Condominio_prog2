@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package condominio.screens;
 
 import condominio.model.Apartamento;
@@ -62,7 +58,6 @@ public class ListaApartamentos extends javax.swing.JFrame {
         btExcluirMorador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(640, 480));
 
         lbTitle.setText("Lista de Apartamentos");
 
@@ -174,14 +169,8 @@ public class ListaApartamentos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(253, 253, 253)
-                        .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -208,6 +197,10 @@ public class ListaApartamentos extends javax.swing.JFrame {
                                 .addComponent(btExcluirMorador)
                                 .addGap(119, 119, 119)))))
                 .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(245, 245, 245))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,8 +247,9 @@ public class ListaApartamentos extends javax.swing.JFrame {
         if (aptoSelecionado != null) {
             Locatario locatario = wrapper.locatarioDAO.findByApartamento(aptoSelecionado);
             aptoSelecionado.setLocatario(locatario);
-            //2 Verificar se Locatario não é nulo
-            if(aptoSelecionado.getLocatario() != null) {
+            //2 Verificar se nome do Locatario não está vazio
+            boolean locatarioNomeVazio = (aptoSelecionado.getLocatario().getNome().equals(""));
+            if(!locatarioNomeVazio) {
                 JOptionPane.showMessageDialog(null, 
                         "Nome: " + locatario.getNome() +
                                 "\nCPF: " + locatario.getCpf() +

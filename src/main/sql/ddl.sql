@@ -15,7 +15,8 @@ create table bloco (
                        andares int not null,
                        vagas_de_garagem int not null,
                        primary key (id_bloco),
-                       foreign key (id_condominio) references condominio(id_condominio)
+                       foreign key (id_condominio) references condominio(id_condominio) ON DELETE CASCADE
+    -- Cascade devido a experiência de usuário, porém não é recomendado pois desfaz as restrições criadas por uma fk
 );
 
 create table pessoa (
@@ -31,7 +32,7 @@ create table locatario (
                            cpf varchar(11) not null,
                            id_apartamento int,
                            primary key (id_pessoa),
-                           foreign key (id_pessoa) references pessoa(id_pessoa)
+                           foreign key (id_pessoa) references pessoa(id_pessoa) ON DELETE CASCADE
 );
 -- foreign key (id_apartamento) references apartamento(id_apartamento)
 
@@ -44,12 +45,12 @@ create table apartamento (
                              vagas_de_garagem int not null,
                              valor_aluguel double not null,
                              primary key (id_apartamento),
-                             foreign key (id_bloco) references bloco(id_bloco),
-                             foreign key (id_locatario) references locatario(id_pessoa)
+                             foreign key (id_bloco) references bloco(id_bloco) ON DELETE CASCADE,
+                             foreign key (id_locatario) references locatario(id_pessoa) ON DELETE CASCADE
 );
 
 alter table locatario add (
-    foreign key (id_apartamento) references apartamento(id_apartamento)
+    foreign key (id_apartamento) references apartamento(id_apartamento) ON DELETE CASCADE
     );
 
 create table administrador (
@@ -57,8 +58,8 @@ create table administrador (
                            cnpj varchar(14) not null,
                            id_condominio int not null,
                            primary key (id_pessoa),
-                           foreign key (id_pessoa) references pessoa(id_pessoa),
-                           foreign key (id_condominio) references condominio(id_condominio)
+                           foreign key (id_pessoa) references pessoa(id_pessoa) ON DELETE CASCADE,
+                           foreign key (id_condominio) references condominio(id_condominio) ON DELETE CASCADE
 );
 
 create view pessoa_locatario as
@@ -106,38 +107,3 @@ select
     a.valor_aluguel
 from bloco b
          inner join apartamento a on b.id_bloco = a.id_bloco;
--- Cascade devido a experiência de usuário, porém não é recomendado pois desfaz as restrições criadas por uma fk;
-ALTER TABLE bloco
-DROP FOREIGN KEY bloco_ibfk_1,
-ADD CONSTRAINT bloco_ibfk_2
-FOREIGN KEY (id_condominio)
-REFERENCES condominio (id_condominio)
-ON DELETE CASCADE;
-
-ALTER TABLE apartamento
-DROP FOREIGN KEY apartamento_ibfk_1,
-ADD CONSTRAINT apartamento_ibfk_3
-FOREIGN KEY (id_bloco)
-REFERENCES bloco (id_bloco)
-ON DELETE CASCADE;
-
-ALTER TABLE apartamento
-DROP FOREIGN KEY apartamento_ibfk_2,
-ADD CONSTRAINT apartamento_ibfk_4
-FOREIGN KEY (id_locatario)
-REFERENCES locatario (id_pessoa)
-ON DELETE CASCADE;
-
-ALTER TABLE locatario
-DROP FOREIGN KEY locatario_ibfk_1,
-ADD CONSTRAINT locatario_ibfk_3
-FOREIGN KEY (id_pessoa)
-REFERENCES pessoa (id_pessoa)
-ON DELETE CASCADE;
-
-ALTER TABLE locatario
-DROP FOREIGN KEY locatario_ibfk_2,
-ADD CONSTRAINT locatario_ibfk_4
-FOREIGN KEY (id_apartamento)
-REFERENCES apartamento (id_apartamento)
-ON DELETE CASCADE;
