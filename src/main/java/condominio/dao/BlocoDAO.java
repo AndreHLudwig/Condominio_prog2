@@ -81,7 +81,7 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, idBloco);
-            int rs = statement.executeUpdate();
+            int rs = statement.executeUpdate();//executeUpdate retorna o número de linhas afetadas
             if (rs == 1) {
                 System.out.println("Bloco excluído com sucesso!");
             } else {
@@ -104,7 +104,6 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
             Bloco bloco = new Bloco();
             while (resultSet.next()) { 
                 bloco.setIdBloco(resultSet.getInt("id_bloco"));
-//                bloco.setApartamentos(apartamentoDAO.findbyBloco(id_bloco));
                 bloco.setNome(resultSet.getString("nome"));
                 bloco.setAndares(resultSet.getInt("andares"));
                 bloco.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));
@@ -127,7 +126,6 @@ public class BlocoDAO implements GenericDAO<Bloco, Condominio>{
             while (resultSet.next()) {
                 Bloco bloco = new Bloco();
                 bloco.setIdBloco(resultSet.getInt("id_bloco"));
-//                bloco.setApartamentos(apartamentoDAO.findbyBloco(bloco));
                 bloco.setNome(resultSet.getString("nome"));
                 bloco.setAndares(resultSet.getInt("andares"));
                 bloco.setVagasDeGaragem(resultSet.getInt("vagas_de_garagem"));

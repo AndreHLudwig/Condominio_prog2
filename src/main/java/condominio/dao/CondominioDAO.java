@@ -1,4 +1,4 @@
-package condominio.dao;
+package condominio.dao; //Data Access Object
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
