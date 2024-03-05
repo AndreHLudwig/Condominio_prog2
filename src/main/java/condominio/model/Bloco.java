@@ -1,26 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package condominio;
+package condominio.model;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author 06985933599
- */
 public class Bloco {
+     private int idBloco;
      private ArrayList <Apartamento> apartamentos;
      private String nome;
      private int andares;
      private int vagasDeGaragem;
 
      public Bloco(String nome, int andares, int vagasDeGaragem) {
+          this.idBloco = 0; //TODO Confirmar: precisamos de construtor onde passamos o id?
           this.apartamentos = new ArrayList<Apartamento>();
           this.nome = nome;
           this.andares = andares;
           this.vagasDeGaragem = vagasDeGaragem;
+     }
+
+    public Bloco() {
+        this.apartamentos = new ArrayList<Apartamento>();
+    }
+
+     public int getIdBloco() {
+          return idBloco;
+     }
+
+     public void setIdBloco(int idBloco) {
+          this.idBloco = idBloco;
      }
 
      public ArrayList<Apartamento> getApartamentos() {
